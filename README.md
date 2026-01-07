@@ -11,8 +11,6 @@ PDBから取得した三次元構造データに基づき、抗体の相補性�
 - **実務向け設計**: クラスベースのPythonモジュールにより、既存の創薬パイプラインやWebアプリへの統合が容易。
 
 ## 解析ワークフロー
-
-
 1. **データ取得**: Biopythonを用いたPDB複合体データの自動取得。
 2. **前処理**: 
    - 抗体と抗原の接触残基（距離 $4.0\text{\AA}$ 以下）を正解ラベルとして抽出。
@@ -24,30 +22,3 @@ PDBから取得した三次元構造データに基づき、抗体の相補性�
 ## セットアップ
 ```bash
 pip install biopython abnumber rdkit scikit-learn pandas matplotlib seaborn
-
-
-## 使い方
-from antibody_predictor import AntibodyBindingPredictor
-
-# モデルのロード
-predictor = AntibodyBindingPredictor()
-predictor.load_model('pretrained_model.pkl')
-
-# 未知の重鎖配列から予測
-seq = "EVQLVESGGGLVQPGGSLRLSCAASGFTF..."
-results = predictor.predict(seq)
-
-# 結合確率が高いトップ10残基を表示
-print(results.sort_values('Binding_Prob', ascending=False).head(10))
-
-
-## 今後の展望
-深層学習（Graph Neural Networks）の導入による空間的特徴の更なる活用。
-SAbDab（Structural Antibody Database）全件を用いた大規模学習データの構築。
-
-
-## ライセンス
-MIT License
-
-著者
-[Masaki Sukeda / TSUBAKI0531] (Ph.D. in Agriculture / Antibody Drug Researcher)
